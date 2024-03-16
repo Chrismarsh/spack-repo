@@ -23,7 +23,7 @@ class PyWindmapper(PythonPackage):
     version("2.1.16", sha256="da7dca6d16557221814377f90aef7bdf3434c0ac75978969975f9b93672ffe1c")
 
     # pyproject.toml
-    depends_on("cmake@3.16:",type="build")
+    depends_on("cmake@3.16:", type="build")
     depends_on("py-setuptools", type="build")
     depends_on("py-wheel", type="build")
     depends_on("py-scikit-build", type="build")
