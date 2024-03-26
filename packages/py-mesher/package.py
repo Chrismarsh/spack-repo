@@ -14,18 +14,17 @@ class PyMesher(PythonPackage):
     """
 
     homepage = "https://github.com/Chrismarsh/mesher/"
-    url = "https://github.com/Chrismarsh/mesher/archive/refs/tags/2.0.7.tar.gz"
+    pypi = "mesher/mesher-2.1.2.tar.gz"
 
     maintainers("Chrismarsh")
 
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
     version("develop")
-    version("2.0.1", sha256="2b0dc247c0b4a2344ce0207d8a4c24712c2804be43826e7f75f2e7dd977e98d9")
-    version("2.0.3", sha256="10272ad5819badf2eb770ff4bacba75dde1cd22768fb6e9b2a6db3434f4a22cc")
-    version("2.0.7", sha256="2af40d5fe86ae93cd4f3b999359e47e183f531c6cbb4bada9339c923db79315d")
-    version("2.1.0", sha256="fce4ed52ecbd4d905fb224060eafd510ec91a01306268208519b0403e44c427d")
-    version("2.1.1", sha256="a27cffe932a7c24f3d76c5f1fb584e96f75050a661baa1da8c2573e9b5c35578")
+    version("2.1.3", sha256="4f57208da5440a21b44046eab7fcf74b428a662bb39b9f1c35b301d3b66db90e")
+    version("2.1.2", sha256="5bfd4382c74138eef6d509b41777c1daf28919dd78cf392c63a5f032f13f67c7")
+    version("2.1.1", sha256="512a4ca81391420550a2414cc9c8d74c60bfa6635c964af5f515166c9ffff619")
+    version("2.1.0", sha256="672ad5549399372473dff811604ee79c0112ad6f15e3e2acaed4f5ec602d2610")
 
     # pyproject.toml
     depends_on("py-scikit-build-core +pyproject", type="build")
