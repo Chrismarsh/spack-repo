@@ -18,7 +18,7 @@ class Chm(CMakePackage):
     # FIXME: Add the SPDX identifier of the project's license below.
     # See https://spdx.org/licenses/ for a list. Upon manually verifying
     # the license, set checked_by to your Github username.
-    license("UNKNOWN", checked_by="github_user1")
+    license("UNKNOWN", checked_by="Chrismarsh")
 
     version("develop")
     version("1.2.7", sha256="cb6314b58e45aaa9b5b316bbd6a5fd2c5cd906c49f7f3a497bae86bbf1cc7e61")
@@ -31,11 +31,13 @@ class Chm(CMakePackage):
     version("1.1.0", sha256="93ba35bf4570ba3793674195b51e7f868fac04332929cf4c4db251da3a51ea8a")
     version("1.0.0", sha256="737ca919c83973f8064c474141b1366b345f7ba8477d019f33278e9074f49318")
 
-    depends_on("boost +system+filesystem+date_time+thread+regex+iostreams+program_options+mpi+serialization")
+    depends_on("cmake@3.2:", type="build")
+
+    depends_on("boost@1.85.0: +system+filesystem+date_time+thread+regex+iostreams+program_options+mpi+serialization")
     depends_on("cgal +header_only")
     depends_on("hdf5 +cxx")
     depends_on("netcdf-cxx4@4.3.1:")
-    depends_on("gdal@3.8.3: +hdf5 +netcdf ^proj@9.2.1+curl+tiff")
+    depends_on("gdal@3.8.3: +hdf5 +netcdf")
     depends_on("proj@9.2.1+curl+tiff")
     depends_on("sparsehash")
     depends_on("gperftools")
@@ -45,12 +47,30 @@ class Chm(CMakePackage):
     depends_on("eigen")
     depends_on("meteoio")
     depends_on("func")
-    depends_on("trilinos@14.4.0+mpi")
+    depends_on("trilinos@15.0.0 +mpi +openmp +threadsafe", when="+openmp")
+    depends_on("trilinos@15.0.0 +mpi", when="~openmp")
     depends_on("jemalloc")
-    depends_on("vtk@9:")
+    depends_on("vtk@9.2.6") # ^freetype build_system=autotools
     depends_on("spdlog")
+    depends_on("openblas")
+
+    variant("openmp", default=False, description="Enable OpenMP. Disable for better errors")
 
     def cmake_args(self):
         # args = ["--debug-find"]
         args = []
+
+        args.extend(
+            [
+                self.define_from_variant("USE_OMP", "openmp")
+            ]
+        )
+
+        # args.extend(
+        # [
+        #     define("CMAKE_C_COMPILER", spec["mpi"].mpicc),
+        #     define("CMAKE_CXX_COMPILER", spec["mpi"].mpicxx),
+        #     define("CMAKE_Fortran_COMPILER", spec["mpi"].mpifc),
+        #     define("MPI_BASE_DIR", str(pathlib.PurePosixPath(spec["mpi"].prefix))),
+        # ]
         return args
