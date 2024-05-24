@@ -49,7 +49,8 @@ class Chm(CMakePackage):
 
     depends_on("eigen")
     depends_on("meteoio")
-    depends_on("func")
+    depends_on("func@master ~openmp", when="~openmp")
+    depends_on("func@master +openmp", when="+openmp")
     depends_on("trilinos@15.0.0 +mpi +openmp +threadsafe", when="+openmp")
     depends_on("trilinos@15.0.0 +mpi", when="~openmp")
     depends_on("jemalloc")
