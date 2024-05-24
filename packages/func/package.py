@@ -33,7 +33,7 @@ class Func(CMakePackage):
 
     license("GPL/LGPL")
 
-    version("master", branch="https://github.com/uofs-simlab/func")
+    version("master", branch="master")
     version("2.0", sha256="ca25b960c72bebc5b0be0fedc189ef24e669d21a7571fd59f751a187fb6c1cea")
 
     depends_on("boost")
