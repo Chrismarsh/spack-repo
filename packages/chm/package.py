@@ -36,21 +36,24 @@ class Chm(CMakePackage):
     depends_on("boost@1.85.0: +system+filesystem+date_time+thread+regex+iostreams+program_options+mpi+serialization")
     depends_on("cgal +header_only")
     depends_on("hdf5 +cxx")
-    depends_on("netcdf-cxx4@4.3.1:")
-    depends_on("gdal@3.8.3: +hdf5 +netcdf")
-    depends_on("proj@9.2.1+curl+tiff")
+    depends_on("netcdf-cxx4@4.3:")
+    depends_on("gdal@3.8 +hdf5 +netcdf")
+    depends_on("proj@9: +curl+tiff")
     depends_on("sparsehash")
-    depends_on("gperftools")
+    depends_on("gperftools build_system=autotools")
     depends_on("gsl +external-cblas")
     depends_on("armadillo")
-    depends_on("intel-oneapi-tbb")
+
+    depends_on("intel-tbb", when="platform=darwin")
+    depends_on("intel-oneapi-tbb", when="platform=linux")
+
     depends_on("eigen")
     depends_on("meteoio")
     depends_on("func")
     depends_on("trilinos@15.0.0 +mpi +openmp +threadsafe", when="+openmp")
     depends_on("trilinos@15.0.0 +mpi", when="~openmp")
     depends_on("jemalloc")
-    depends_on("vtk@9.2.6") # ^freetype build_system=autotools
+    depends_on("vtk@9.2:") # ^freetype build_system=autotools
     depends_on("spdlog")
     depends_on("openblas")
 
