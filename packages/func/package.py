@@ -29,16 +29,22 @@ class Func(CMakePackage):
 
     homepage = "https://github.com/uofs-simlab/func"
     url = "https://github.com/uofs-simlab/func/archive/refs/tags/v2.0.tar.gz"
+    git = "https://github.com/uofs-simlab/func"
 
     license("GPL/LGPL")
 
+    version("master", branch="https://github.com/uofs-simlab/func")
     version("2.0", sha256="ca25b960c72bebc5b0be0fedc189ef24e669d21a7571fd59f751a187fb6c1cea")
 
     depends_on("boost")
+
+    variant("openmp", default=True, description="Enable OpenMP")
 
     def cmake_args(self):
         # FIXME: Add arguments other than
         # FIXME: CMAKE_INSTALL_PREFIX and CMAKE_BUILD_TYPE
         # FIXME: If not needed delete this function
-        args = []
+        args = [
+        self.define_from_variant("FUNC_USE_OPENMP", "openmp")
+        ]
         return args
