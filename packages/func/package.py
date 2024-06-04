@@ -40,6 +40,7 @@ class Func(CMakePackage):
 
 
     depends_on("boost")
+    depends_on("armadillo")
 
     variant("openmp", default=True, description="Enable OpenMP")
 
