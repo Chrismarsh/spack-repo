@@ -38,17 +38,18 @@ class Func(CMakePackage):
     version("2.0", sha256="ca25b960c72bebc5b0be0fedc189ef24e669d21a7571fd59f751a187fb6c1cea")
     version("1.0", sha256="60dbc353f82208efde08eeaea1fabd15e805b6c517a8e033d168027c89884fbf")
 
+    variant("armadillo", default=True, description="Use Armadillo to enable ChebyInterpTables or PadeTable tables.")
+    variant("openmp", default=True, description="Enable OpenMP")
+    variant("examples", default=False, description="Build examples")
 
     depends_on("boost")
-    depends_on("armadillo")
+    depends_on("armadillo", when="+armadillo")
 
-    variant("openmp", default=True, description="Enable OpenMP")
 
     def cmake_args(self):
-        # FIXME: Add arguments other than
-        # FIXME: CMAKE_INSTALL_PREFIX and CMAKE_BUILD_TYPE
-        # FIXME: If not needed delete this function
         args = [
-        self.define_from_variant("FUNC_USE_OPENMP", "openmp")
+            self.define_from_variant("FUNC_USE_OPENMP", "openmp"),
+            self.define_from_variant("FUNC_USE_ARMADILLO", "armadillo"),
+            self.define_from_variant("BUILD_EXAMPLES", "examples"),
         ]
         return args
