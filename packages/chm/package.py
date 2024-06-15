@@ -33,7 +33,7 @@ class Chm(CMakePackage):
 
     depends_on("cmake@3.2:", type="build")
 
-    depends_on("boost@1.85.0: +system+filesystem+date_time+thread+regex+iostreams+program_options+mpi+serialization")
+    depends_on("boost@1.85.0: +system+filesystem+date_time+thread+chrono+regex+iostreams+program_options+mpi+serialization")
     depends_on("cgal +header_only")
     depends_on("hdf5 +cxx")
     depends_on("netcdf-cxx4@4.3:")
@@ -49,8 +49,8 @@ class Chm(CMakePackage):
 
     depends_on("eigen")
     depends_on("meteoio")
-    depends_on("func@master ~openmp", when="~openmp")
-    depends_on("func@master +openmp", when="+openmp")
+    depends_on("func@2.1: ~openmp", when="~openmp")
+    depends_on("func@2.1: +openmp", when="+openmp")
     depends_on("trilinos@15.0.0 +mpi +openmp +threadsafe", when="+openmp")
     depends_on("trilinos@15.0.0 +mpi", when="~openmp")
     depends_on("jemalloc")
