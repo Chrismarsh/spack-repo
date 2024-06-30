@@ -21,6 +21,11 @@ class Chm(CMakePackage):
     license("UNKNOWN", checked_by="Chrismarsh")
 
     version("develop")
+    version("1.4.2", sha256="4fdf2fdcca5b1141cac85599d3da3bef5900667b21edf09ab314fc107b5e37f7")
+    version("1.4.1", sha256="89b6d592cfaddf1b6debf1f2c462bce0ac29a86dbf82df858dce146e56235dbb")
+    version("1.4.0", sha256="2291a730619703bd52e990dff294d92f785e8f66ecc2745dfd4243fb473c8faa")
+    version("1.3.1", sha256="595779861be15726eb6d198ea6f4dc5fb100cbdecb00e844bd63ae589c10cb5f")
+    version("1.3.0", sha256="39ba8daa000d00a4162b3a672b32682b145ff3ac2c32f7db7f72ef3fd9263287")
     version("1.2.7", sha256="cb6314b58e45aaa9b5b316bbd6a5fd2c5cd906c49f7f3a497bae86bbf1cc7e61")
     version("1.2.6", sha256="06878a7c7efc69a5ff08240b0fcecb7d6f1f4f33c1074ba8121cbea740c50047")
     version("1.2.5", sha256="2892cd341c0cd8e92ab680ad5606886a67668d668ed4d9b6ce6751c57eaf1477")
