@@ -12,15 +12,13 @@ class Chm(CMakePackage):
 
     homepage = "https://github.com/Chrismarsh/CHM"
     url = "https://github.com/Chrismarsh/CHM/archive/refs/tags/1.2.7.tar.gz"
+    git = "https://github.com/Chrismarsh/CHM.git"
 
     maintainers("Chrismarsh")
 
-    # FIXME: Add the SPDX identifier of the project's license below.
-    # See https://spdx.org/licenses/ for a list. Upon manually verifying
-    # the license, set checked_by to your Github username.
-    license("UNKNOWN", checked_by="Chrismarsh")
+    license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
-    version("develop")
+    version("develop", branch="develop")
     version("1.4.2", sha256="4fdf2fdcca5b1141cac85599d3da3bef5900667b21edf09ab314fc107b5e37f7")
     version("1.4.1", sha256="89b6d592cfaddf1b6debf1f2c462bce0ac29a86dbf82df858dce146e56235dbb")
     version("1.4.0", sha256="2291a730619703bd52e990dff294d92f785e8f66ecc2745dfd4243fb473c8faa")
