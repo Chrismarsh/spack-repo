@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack.package import *
-
+from spack.build_systems.cmake import CMakeBuilder
 
 class PyMesher(PythonPackage):
     """
@@ -47,3 +47,14 @@ class PyMesher(PythonPackage):
     depends_on("boost@1.71.0: +program_options+filesystem")
     depends_on("gdal@3.5: +python")
 
+class PythonPipBuilder(spack.build_systems.python.PythonPipBuilder):
+
+    def setup_build_environment(self, env):
+
+        std_args = CMakeBuilder.std_args(self.pkg) + CMakeBuilder.cmake_args(self.pkg)
+        std_args = std_args[2:] # drop "-G Makefile"
+
+        # pass through all the spack cmake args to scikit-build
+        # https://scikit-build-core.readthedocs.io/en/latest/configuration.html#configuring-cmake-arguments-and-defines
+        SKBUILD_CMAKE_ARGS = ' '.join(std_args)
+        env.set("CMAKE_ARGS", SKBUILD_CMAKE_ARGS)
