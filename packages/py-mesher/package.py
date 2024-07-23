@@ -31,7 +31,7 @@ class PyMesher(PythonPackage):
     depends_on("py-scikit-build-core +pyproject", type="build")
 
     # setup.py
-    depends_on("vtk+python@9:")
+    depends_on("vtk+python@9.2:")
     depends_on("py-numpy")
     depends_on("py-matplotlib")
     depends_on("py-cloudpickle")
