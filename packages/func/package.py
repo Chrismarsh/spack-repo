@@ -34,6 +34,7 @@ class Func(CMakePackage):
     license("GPL/LGPL")
 
     version("master", branch="master")
+    version("2.2.0", sha256="bd4ecbc27096fa0b913fb46059e02298a96afd4912d549eb68b5c4c090999976")
     version("2.1.0", sha256="150cc53fe90df16a1b06f34c3293f4aef4557ce42b30e1095e7570b1c367b9f7")
     version("2.0", sha256="ca25b960c72bebc5b0be0fedc189ef24e669d21a7571fd59f751a187fb6c1cea")
     version("1.0", sha256="60dbc353f82208efde08eeaea1fabd15e805b6c517a8e033d168027c89884fbf")
