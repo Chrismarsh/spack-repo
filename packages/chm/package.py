@@ -19,6 +19,7 @@ class Chm(CMakePackage):
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
     version("develop", branch="develop")
+    version("1.4.3", sha256="fa07e2c8c2f88afef4842a14074a4cade8c137bf314b54ee1b0a6640d8aa0d15")
     version("1.4.2", sha256="4fdf2fdcca5b1141cac85599d3da3bef5900667b21edf09ab314fc107b5e37f7")
     version("1.4.1", sha256="89b6d592cfaddf1b6debf1f2c462bce0ac29a86dbf82df858dce146e56235dbb")
     version("1.4.0", sha256="2291a730619703bd52e990dff294d92f785e8f66ecc2745dfd4243fb473c8faa")
@@ -40,7 +41,7 @@ class Chm(CMakePackage):
     depends_on("cgal +header_only")
     depends_on("hdf5 +cxx")
     depends_on("netcdf-cxx4@4.3:")
-    depends_on("gdal@3.8 +hdf5 +netcdf")
+    depends_on("gdal@3.9: +hdf5 +netcdf")
     depends_on("proj@9: +curl+tiff")
     depends_on("sparsehash")
     depends_on("gperftools build_system=autotools")
@@ -60,6 +61,7 @@ class Chm(CMakePackage):
     depends_on("vtk@9.2:") # ^freetype build_system=autotools
     depends_on("spdlog")
     depends_on("openblas")
+
 
     variant("openmp", default=False, description="Enable OpenMP. Disable for better errors")
 
