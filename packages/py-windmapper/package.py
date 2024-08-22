@@ -27,7 +27,6 @@ class PyWindmapper(PythonPackage):
     depends_on("py-setuptools", type="build")
     depends_on("py-wheel", type="build")
     depends_on("py-scikit-build", type="build")
-    depends_on("py-ninja", type="build")
     depends_on("py-packaging", type="build")
 
     # setup.py
