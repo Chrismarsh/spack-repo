@@ -13,19 +13,21 @@ class PyPychm(PythonPackage):
     important features while maintaining a variable spatial resolution. 
     """
 
-    homepage = "https://github.com/Chrismarsh/mesher/"
+    homepage = "https://github.com/Chrismarsh/pyCHM/"
     git = 'https://github.com/Chrismarsh/pyCHM.git'
+    url = 'https://github.com/Chrismarsh/pyCHM/archive/refs/tags/1.4.0.tar.gz'
 
     maintainers("Chrismarsh")
 
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
-    version("develop", branch="develop")
+    version("develop", branch="develop", no_cache=True) # don't source cache this git repo
+    version("1.4.0", sha256="0aa7a6e35d0f8c01f3b8e0e21d3349fbcae51711383224700ce42d05e8d45559")
 
 
     # setup.py
     depends_on("vtk+python@9.2:")
-    depends_on("py-numpy")
+    depends_on("py-numpy@1.26:") #forces a new version of setuptools needed for bokeh
     depends_on("py-xarray +io +viz +parallel")
     depends_on("py-netcdf4")
     depends_on("py-pandas")
