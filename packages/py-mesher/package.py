@@ -15,12 +15,15 @@ class PyMesher(PythonPackage):
 
     homepage = "https://github.com/Chrismarsh/mesher/"
     pypi = "mesher/mesher-2.1.2.tar.gz"
+    git = "https://github.com/Chrismarsh/mesher.git"
 
     maintainers("Chrismarsh")
 
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
-    version("develop")
+    version("develop", branch="dev")
+    version("2.1.9", sha256="62409a6c8a92225caaf30171fdde3c32e98bcfeadb5844b303186e6c92b9124d")
+    version("2.1.8", sha256="ef7fb1d1b0cbb3d4e7fa48ec35187f49232cf185af7c14a227ec82a041b30b3c")
     version("2.1.7", sha256="8c6635cdcd3426fa1583a2b59d4546e209a324754f32c487da301c03b6170726")
     version("2.1.6", sha256="0620598c44fc5c4256fb3f93b1c7583b143b21729f780621efa9824d7d9e4a55")
     version("2.1.4", sha256="a142b6c5773187ddd98bb9f422a9a8545f90f2482f4c9f5089b1f7f54ea30caf")
