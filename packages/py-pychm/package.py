@@ -38,4 +38,5 @@ class PyPychm(PythonPackage):
     depends_on("py-rasterio")
     depends_on("py-cftime")
     depends_on("py-pyproj")
+    depends_on("esmf +python")
 
