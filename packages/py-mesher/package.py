@@ -48,7 +48,8 @@ class PyMesher(PythonPackage):
 
 
     # cmake build
-    depends_on("cgal@5: +header_only")
+    depends_on("cgal@:5 +header_only", when="@:2.1.8")
+    depends_on("cgal@5:")
     depends_on("metis")
     depends_on("boost@1.71.0: +program_options+filesystem")
     depends_on("gdal@3.5: +python")

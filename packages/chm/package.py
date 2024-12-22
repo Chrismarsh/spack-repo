@@ -40,7 +40,7 @@ class Chm(CMakePackage):
     depends_on("cmake@3.2:", type="build")
 
     depends_on("boost@1.85.0: +system+filesystem+date_time+thread+chrono+regex+iostreams+program_options+mpi+serialization")
-    depends_on("cgal +header_only")
+    depends_on("cgal@5:")
     depends_on("hdf5 +cxx")
     depends_on("netcdf-cxx4@4.3:")
     depends_on("gdal@3.9: +hdf5 +netcdf")
@@ -63,7 +63,6 @@ class Chm(CMakePackage):
     depends_on("vtk@9.2:") # ^freetype build_system=autotools
     depends_on("spdlog")
     depends_on("openblas")
-
 
     variant("openmp", default=False, description="Enable OpenMP. Disable for better errors")
 
