@@ -22,6 +22,7 @@ class PyMesher(PythonPackage):
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
     version("develop", branch="dev")
+    version("2.1.11", sha256="74beeb84d96edeb56e7502403956861dd66de138eb96ec0fdc10cd493c3b33b8")
     version("2.1.10", sha256="33340dd65877dacfc9200db2fec11369b4b6eda3d89f21b6bdca281e359332b7")
     version("2.1.9", sha256="62409a6c8a92225caaf30171fdde3c32e98bcfeadb5844b303186e6c92b9124d")
     version("2.1.8", sha256="ef7fb1d1b0cbb3d4e7fa48ec35187f49232cf185af7c14a227ec82a041b30b3c")
@@ -49,10 +50,12 @@ class PyMesher(PythonPackage):
 
     # cmake build
     depends_on("cgal@:5 +header_only", when="@:2.1.8")
-    depends_on("cgal@5:")
+    depends_on("cgal@6: +gmp")
     depends_on("metis")
     depends_on("boost@1.71.0: +program_options+filesystem")
     depends_on("gdal@3.5: +python")
+
+
 
 class PythonPipBuilder(spack.build_systems.python.PythonPipBuilder):
 
