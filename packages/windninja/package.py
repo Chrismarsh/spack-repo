@@ -29,6 +29,7 @@ class Windninja(CMakePackage):
     variant("build_convert_output", default=False, description="Build a standalone command line interface for xyz file conversions")
     variant("build_solar_grid", default=False, description="Build a application for building solar grids")
 
+    depends_on("cxx", type="build") 
     depends_on("cmake@3.0:",type="build")
     depends_on("boost@1.74.0: +date_time +program_options +test")
     depends_on("gdal@3.4.1: +netcdf +curl")

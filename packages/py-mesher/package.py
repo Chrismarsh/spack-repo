@@ -34,6 +34,8 @@ class PyMesher(PythonPackage):
     version("2.1.1", sha256="512a4ca81391420550a2414cc9c8d74c60bfa6635c964af5f515166c9ffff619")
     version("2.1.0", sha256="672ad5549399372473dff811604ee79c0112ad6f15e3e2acaed4f5ec602d2610")
 
+    depends_on("cxx", type="build") 
+    
     # pyproject.toml
     depends_on("py-scikit-build-core +pyproject", type="build")
 

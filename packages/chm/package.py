@@ -19,7 +19,7 @@ class Chm(CMakePackage):
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
     version("develop", branch="develop", no_cache=True) # don't source cache this git repo
-    version("1.5.0b5", sha256="0ec1834e84476973b91842f7ace775cc2b7e8dfedd5da6c42ac88778bf4796b8")
+    version("1.5.0b6", sha256="42b5d12690e69acb6da788aa964ba87398ce533d752fdc9dca255bff79b021d2")
     version("1.4.5", sha256="d22f3c25743495029d044f7b536d4cae930e01de275fbac98e2a687da7edc016")
     version("1.4.3", sha256="fa07e2c8c2f88afef4842a14074a4cade8c137bf314b54ee1b0a6640d8aa0d15")
     version("1.4.2", sha256="4fdf2fdcca5b1141cac85599d3da3bef5900667b21edf09ab314fc107b5e37f7")
@@ -36,6 +36,8 @@ class Chm(CMakePackage):
     version("1.2.0", sha256="ceff6bb16bc6cf3b54aeeffebce3cd46c0764e3531cd135fa81d453cda072754")
     version("1.1.0", sha256="93ba35bf4570ba3793674195b51e7f868fac04332929cf4c4db251da3a51ea8a")
     version("1.0.0", sha256="737ca919c83973f8064c474141b1366b345f7ba8477d019f33278e9074f49318")
+
+    depends_on("cxx", type="build") 
 
     depends_on("cmake@3.2:", type="build")
 

@@ -32,6 +32,7 @@ class Func(CMakePackage):
     git = "https://github.com/uofs-simlab/func"
 
     license("GPL/LGPL")
+    maintainers("Chrismarsh")
 
     version("master", branch="master")
     version("2.2.0", sha256="bd4ecbc27096fa0b913fb46059e02298a96afd4912d549eb68b5c4c090999976")
@@ -43,6 +44,8 @@ class Func(CMakePackage):
     variant("openmp", default=True, description="Enable OpenMP")
     variant("examples", default=False, description="Build examples")
 
+    depends_on("cxx", type="build") 
+    
     depends_on("boost")
     depends_on("armadillo", when="+armadillo")
 
