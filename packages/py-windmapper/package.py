@@ -3,8 +3,10 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.package import *
 from spack.build_systems.cmake import CMakeBuilder
+from spack.build_systems.python import PythonPipBuilder
+from spack.package import *
+
 
 class PyWindmapper(PythonPackage):
     """
@@ -45,7 +47,7 @@ class PyWindmapper(PythonPackage):
         env.set("BUILD_WINDNINJA", False)
 
     
-class PythonPipBuilder(spack.build_systems.python.PythonPipBuilder):
+class PythonPipBuilder(PythonPipBuilder):
 
     def setup_build_environment(self, env):
 
