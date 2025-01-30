@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 from spack.package import *
-
+from spack.build_systems.cmake import CMakeBuilder
 
 class PyWindmapper(PythonPackage):
     """
@@ -14,20 +14,19 @@ class PyWindmapper(PythonPackage):
 
     homepage = "https://github.com/Chrismarsh/Windmapper"
     url = "https://github.com/Chrismarsh/Windmapper/archive/refs/tags/2.1.16.tar.gz"
+    git = "https://github.com/Chrismarsh/Windmapper.git"
 
 
     maintainers("Chrismarsh")
 
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
+    version("develop", branch="develop", no_cache=True)
     version("2.1.16", sha256="da7dca6d16557221814377f90aef7bdf3434c0ac75978969975f9b93672ffe1c")
 
     # pyproject.toml
     depends_on("cmake@3.16:", type="build")
-    depends_on("py-setuptools", type="build")
-    depends_on("py-wheel", type="build")
-    depends_on("py-scikit-build", type="build")
-    depends_on("py-packaging", type="build")
+    depends_on("py-scikit-build-core +pyproject", type="build")
 
     # setup.py
     depends_on("py-numpy")
@@ -40,7 +39,21 @@ class PyWindmapper(PythonPackage):
     depends_on("py-cloudpickle")
 
     depends_on("gdal@3.5: +python")
-    depends_on("windninja")
+    depends_on("windninja", type="run")
 
     def setup_build_environment(self, env):
+        env.set("BUILD_WINDNINJA", False)
+
+    
+class PythonPipBuilder(spack.build_systems.python.PythonPipBuilder):
+
+    def setup_build_environment(self, env):
+
+        std_args = CMakeBuilder.std_args(self.pkg) + CMakeBuilder.cmake_args(self.pkg)
+        std_args = std_args[2:] # drop "-G Makefile"
+
+        # pass through all the spack cmake args to scikit-build
+        # https://scikit-build-core.readthedocs.io/en/latest/configuration.html#configuring-cmake-arguments-and-defines
+        SKBUILD_CMAKE_ARGS = ' '.join(std_args)
+        env.set("CMAKE_ARGS", SKBUILD_CMAKE_ARGS)
         env.set("BUILD_WINDNINJA", False)
