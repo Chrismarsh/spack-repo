@@ -37,7 +37,9 @@ class Chm(CMakePackage):
     version("1.1.0", sha256="93ba35bf4570ba3793674195b51e7f868fac04332929cf4c4db251da3a51ea8a")
     version("1.0.0", sha256="737ca919c83973f8064c474141b1366b345f7ba8477d019f33278e9074f49318")
 
-    depends_on("cxx", type="build") 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+    depends_on("fortran", type="build")
 
     depends_on("cmake@3.30:", type="build")
 
