@@ -34,7 +34,7 @@ class Windninja(CMakePackage):
     depends_on("cmake@3.0:",type="build")
     depends_on("boost@1.74.0: +date_time +program_options +test")
     depends_on("gdal@3.4.1: +netcdf +curl")
-    depends_on("llvm-openmp", when="%apple-clang +openmp")
+    depends_on("llvm-openmp", when="+openmp %apple-clang")
     depends_on("openfoam", when="+ninjafoam")
 
     depends_on("qt@4", when="+qtgui")
@@ -64,7 +64,7 @@ class Windninja(CMakePackage):
         return args
 
 
-    @when("%apple-clang +openmp")
+    @when("+openmp %apple-clang")
     def patch(self):
         # WN needs to link against openmp explicitly when using apple-clang
         cmake_files = find(self.stage.source_path, "CMakeLists.txt", recursive=True)
