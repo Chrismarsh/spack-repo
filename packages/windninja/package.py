@@ -11,13 +11,14 @@ class Windninja(CMakePackage):
 
     url = "https://github.com/firelab/windninja/archive/refs/tags/3.10.0.tar.gz"
     git = "https://github.com/firelab/windninja"
- 
+
     maintainers("Chrismarsh")
 
     # rebranded NIST fallback license
     # https://github.com/firelab/windninja/blob/master/LICENSE
     license("NIST-PD-fallback")
 
+    version("3.11.2", sha256="c9b9af0c9905d8a0792ccf9db9958a0e3b201f653336fd59dbc7f5679cb79881")
     version("3.10.0", sha256="7ab120c7465afbe5e95e5eec32523a41ff010094c9b2db87cf9ac4b8eac1f956")
 
     variant("openmp", default=True, description="Enable OpenMP support")
@@ -29,7 +30,7 @@ class Windninja(CMakePackage):
     variant("build_convert_output", default=False, description="Build a standalone command line interface for xyz file conversions")
     variant("build_solar_grid", default=False, description="Build a application for building solar grids")
 
-    depends_on("cxx", type="build") 
+    depends_on("cxx", type="build")
     depends_on("cmake@3.0:",type="build")
     depends_on("boost@1.74.0: +date_time +program_options +test")
     depends_on("gdal@3.4.1: +netcdf +curl")
