@@ -15,16 +15,14 @@ class PyPychm(PythonPackage):
 
     homepage = "https://github.com/Chrismarsh/pyCHM/"
     git = 'https://github.com/Chrismarsh/pyCHM.git'
-    url = 'https://github.com/Chrismarsh/pyCHM/archive/refs/tags/1.4.0.tar.gz'
+    pypi = "CHM/CHM-1.4.2.tar.gz"
 
     maintainers("Chrismarsh")
 
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
     version("develop", branch="develop", no_cache=True) # don't source cache this git repo
-    version("1.4.1", sha256="7632b62b77d15f323e3d850d1c19bba273da208871d9f5051726d832199e2c7f")
-    version("1.4.0", sha256="0aa7a6e35d0f8c01f3b8e0e21d3349fbcae51711383224700ce42d05e8d45559")
-
+    version("1.4.2", sha256="d637967540ef12d09804a94b9ae073e11f51e02014600c70de98a42f0ef47673")
 
     # setup.py
     depends_on("vtk+python@9.2:")
