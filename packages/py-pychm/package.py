@@ -22,6 +22,7 @@ class PyPychm(PythonPackage):
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
     version("develop", branch="develop", no_cache=True) # don't source cache this git repo
+    version("1.4.3", sha256="2c2072f604c461fc8d79521d475b5d812a7264758ca484d7c03a2805bf4459d0")
     version("1.4.2", sha256="d637967540ef12d09804a94b9ae073e11f51e02014600c70de98a42f0ef47673")
 
     # setup.py
