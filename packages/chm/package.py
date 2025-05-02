@@ -19,7 +19,7 @@ class Chm(CMakePackage):
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
     version("develop", branch="develop", no_cache=True) # don't source cache this git repo
-    version("1.5.0b13", sha256="1758a654e3b7e073ec44bfcd6e2bd0f95fd735371e4dc12853ed0a15413af26d")
+    version("1.5.0b15", sha256="0ee8ed6b70b18a586d2718bf600b83848cba76b7ac2a82380a15d4faaef09ee9")
     version("1.5.0b12", sha256="84e0fe30ca8a6bfc8cc1be7799ec7a0fafe57a292ba610e09e0271064c6862a8")
     version("1.4.5", sha256="d22f3c25743495029d044f7b536d4cae930e01de275fbac98e2a687da7edc016")
     version("1.4.3", sha256="fa07e2c8c2f88afef4842a14074a4cade8c137bf314b54ee1b0a6640d8aa0d15")
@@ -46,7 +46,7 @@ class Chm(CMakePackage):
 
     depends_on("boost@1.85.0: +system+filesystem+date_time+thread+chrono+regex+iostreams+program_options+mpi+serialization")
     depends_on("cgal@5:")
-    requires("^cgal+gmp", when="^cgal@6:")
+    requires("^cgal~gmp", when="^cgal@6:")
 
     depends_on("hdf5 +cxx")
     depends_on("netcdf-cxx4@4.3:")
@@ -80,15 +80,10 @@ class Chm(CMakePackage):
 
         args.extend(
             [
-                self.define_from_variant("USE_OMP", "openmp")
+                self.define_from_variant("USE_OMP", "openmp"),
+                self.define("CGAL_DISABLE_GMP",1)
             ]
         )
 
-        # args.extend(
-        # [
-        #     define("CMAKE_C_COMPILER", spec["mpi"].mpicc),
-        #     define("CMAKE_CXX_COMPILER", spec["mpi"].mpicxx),
-        #     define("CMAKE_Fortran_COMPILER", spec["mpi"].mpifc),
-        #     define("MPI_BASE_DIR", str(pathlib.PurePosixPath(spec["mpi"].prefix))),
-        # ]
+
         return args
