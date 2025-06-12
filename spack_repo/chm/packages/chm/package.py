@@ -67,10 +67,10 @@ class Chm(CMakePackage):
     depends_on("meteoio")
     depends_on("func@2.2: ~openmp", when="~openmp")
     depends_on("func@2.2: +openmp", when="+openmp")
-    depends_on("trilinos@15.1.1 +mpi +openmp +threadsafe", when="+openmp")
-    depends_on("trilinos@15.1.1 +mpi", when="~openmp")
+    depends_on("trilinos@15: +mpi +openmp +threadsafe", when="+openmp")
+    depends_on("trilinos@15: +mpi", when="~openmp")
     depends_on("jemalloc")
-    depends_on("vtk@9.2:") # ^freetype build_system=autotools
+    depends_on("vtk@9.3:")
     depends_on("spdlog")
     depends_on("openblas")
     # depends_on("udunits")
