@@ -20,6 +20,11 @@ class Meteoio(CMakePackage):
 
     version("2.8.0", sha256="898bf0d0329000e7ae18064c30ea72362aac447deda0b013ee22e4aa63563efd")
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
+
+    depends_on("cmake", type="build")
+
     def cmake_args(self):
         cmake_args = []
         cmake_args.append("-Dshared:BOOL=True")
