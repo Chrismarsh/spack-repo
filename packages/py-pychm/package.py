@@ -8,9 +8,7 @@ from spack.package import *
 
 class PyPychm(PythonPackage):
     """
-    Mesher is a novel multi-objective unstructured mesh generation software 
-    that allows mesh generation to be generated from an arbitrary number of hydrologically 
-    important features while maintaining a variable spatial resolution. 
+    Python tools for working with the Canadian Hydrological Model (CHM).
     """
 
     homepage = "https://github.com/Chrismarsh/pyCHM/"

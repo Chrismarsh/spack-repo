@@ -8,7 +8,9 @@ from spack.package import *
 
 
 class Chm(CMakePackage):
-    """FIXME: Put a proper description of your package here."""
+    """
+    The Canadian Hydrological Model (CHM).
+    """
 
 
     homepage = "https://github.com/Chrismarsh/CHM"
