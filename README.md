@@ -12,6 +12,4 @@ and then add this as the first repo as described [on Spack's readme](https://spa
 $ cat repos.yaml
 	repos:
 	  - /Users/myuser/spack-repo
-	  - $spack/var/spack/repos/builtin
-
 ```
