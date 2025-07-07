@@ -3,12 +3,12 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.build_systems.cmake import CMakeBuilder
-from spack.build_systems.python import PythonPipBuilder
+from spack_repo.builtin.build_systems.cmake import CMakeBuilder
+from spack_repo.builtin.build_systems import python
 from spack.package import *
 
 
-class PyWindmapper(PythonPackage):
+class PyWindmapper(python.PythonPackage):
     """
     Windmapper is a tool used to produce pre-computed libraries of wind field used 
     for wind downscaling using the WindNinja wind diagnostic model.
@@ -17,7 +17,6 @@ class PyWindmapper(PythonPackage):
     homepage = "https://github.com/Chrismarsh/Windmapper"
     url = "https://github.com/Chrismarsh/Windmapper/archive/refs/tags/2.1.16.tar.gz"
     git = "https://github.com/Chrismarsh/Windmapper.git"
-
 
     maintainers("Chrismarsh")
 
@@ -47,7 +46,7 @@ class PyWindmapper(PythonPackage):
         env.set("BUILD_WINDNINJA", False)
 
     
-class PythonPipBuilder(PythonPipBuilder):
+class PythonPipBuilder(python.PythonPipBuilder):
 
     def setup_build_environment(self, env):
 

@@ -3,12 +3,12 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.build_systems.cmake import CMakeBuilder
-from spack.build_systems.python import PythonPipBuilder
+from spack_repo.builtin.build_systems.cmake import CMakeBuilder
+from spack_repo.builtin.build_systems import python
 from spack.package import *
 
 
-class PyMesher(PythonPackage):
+class PyMesher(python.PythonPackage):
     """
     Mesher is a novel multi-objective unstructured mesh generation software 
     that allows mesh generation to be generated from an arbitrary number of hydrologically 
@@ -61,7 +61,7 @@ class PyMesher(PythonPackage):
 
 
 
-class PythonPipBuilder(PythonPipBuilder):
+class PythonPipBuilder(python.PythonPipBuilder):
 
     def setup_build_environment(self, env):
 
