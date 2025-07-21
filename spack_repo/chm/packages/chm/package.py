@@ -53,6 +53,7 @@ class Chm(CMakePackage):
     requires("^cgal~gmp", when="^cgal@6:")
 
     depends_on("hdf5 +cxx")
+    depends_on("netcdf-c@4.9.0: +mpi")
     depends_on("netcdf-cxx4@4.3:")
     depends_on("gdal@3.9: +hdf5 +netcdf")
     depends_on("proj@9: +curl+tiff")
