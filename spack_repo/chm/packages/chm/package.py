@@ -21,8 +21,8 @@ class Chm(CMakePackage):
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
     version("develop", branch="develop", no_cache=True) # don't source cache this git repo
-    version("1.5.0b19",
-        sha256="970a31bb921446e5a754062604ec26e2521b4d6543e0753f4773eb20599b94e6",
+    version("1.5.0b20",
+        sha256="65c36299bd31abcb122fe0d7141f600894fd354f09d7bb635a3c39f7c2d8c645",
         preferred=True
     )
     version("1.4.5", sha256="d22f3c25743495029d044f7b536d4cae930e01de275fbac98e2a687da7edc016")
