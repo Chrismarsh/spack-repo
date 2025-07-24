@@ -20,6 +20,7 @@ class Windninja(CMakePackage):
     # https://github.com/firelab/windninja/blob/master/LICENSE
     license("NIST-PD-fallback")
 
+    version("3.12.1", sha256="c6a0bf3e79a7dca875f9c1bcec6b3b625192bdd6cebcfdfb1fc6c30def4bea63")
     version("3.11.2", sha256="c9b9af0c9905d8a0792ccf9db9958a0e3b201f653336fd59dbc7f5679cb79881")
     version("3.10.0", sha256="7ab120c7465afbe5e95e5eec32523a41ff010094c9b2db87cf9ac4b8eac1f956")
 
@@ -33,7 +34,9 @@ class Windninja(CMakePackage):
     variant("build_solar_grid", default=False, description="Build a application for building solar grids")
 
     depends_on("cxx", type="build")
-    depends_on("cmake@3.0:",type="build")
+    depends_on("c", type="build")
+
+    depends_on("cmake@3.5:",type="build")
     depends_on("boost@1.74.0: +date_time +program_options +test")
     depends_on("gdal@3.4.1: +netcdf +curl")
     depends_on("llvm-openmp", when="+openmp %apple-clang")
@@ -50,10 +53,13 @@ class Windninja(CMakePackage):
     def cmake_args(self):
 
         args = [
-
             self.define("NINJA_QTGUI", False),
             self.define("NINJAFOAM", False),
             self.define("CMAKE_CXX_STANDARD", "11"),
+
+            # https://github.com/firelab/windninja/issues/630
+            self.define("CMAKE_POLICY_VERSION_MINIMUM", "3.5"),
+
             self.define_from_variant("OPENMP_SUPPORT", "openmp"),
             self.define_from_variant("NINJAFOAM", "ninjafoam"),
             self.define_from_variant("NINJA_QTGUI", "qtgui"),
