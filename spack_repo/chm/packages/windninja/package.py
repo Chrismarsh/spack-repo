@@ -50,6 +50,12 @@ class Windninja(CMakePackage):
         msg="ninjafoam is not supported on Macos because OpenFoam does not build on Macos",
     )
 
+    # https://github.com/firelab/windninja/pull/650
+    patch("https://github.com/firelab/windninja/commit/f849d4b11ec2a8e30915114b02211b7b57be0e2c.patch?full_index=1",
+        sha256="5c9a6b377a04fa92bc56701e0676118741ea660e363a98bdf11d09eca88f81ad",
+        when="@3.12.1"
+    )
+
     def cmake_args(self):
 
         args = [
