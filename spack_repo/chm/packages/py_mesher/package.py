@@ -26,6 +26,7 @@ class PyMesher(PythonPackage):
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
     version("develop", branch="dev")
+    version("2.1.12", sha256="d2ce00005a34d649b0692a16fbd5173e31090713b6a1874ad1f100ecdd93e534")
     version("2.1.11", sha256="74beeb84d96edeb56e7502403956861dd66de138eb96ec0fdc10cd493c3b33b8")
     version("2.1.10", sha256="33340dd65877dacfc9200db2fec11369b4b6eda3d89f21b6bdca281e359332b7")
     version("2.1.9", sha256="62409a6c8a92225caaf30171fdde3c32e98bcfeadb5844b303186e6c92b9124d")
