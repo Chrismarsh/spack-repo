@@ -56,6 +56,13 @@ class Windninja(CMakePackage):
         when="@3.12.1"
     )
 
+    # handle CPLIsNan removal in gdal 3.11.3
+    # https://github.com/firelab/windninja/pull/651
+    patch("https://github.com/firelab/windninja/commit/b71b90fcfd3ba91620ea932ce3378df5989f6d8c.patch?full_index=1",
+        sha256="78f3d4913b4c7e83edd767cec65c7e9fdd3c41d9dba939d0bd4d10bb50075cd7",
+        when="@3.12.1 ^gdal@3.11.3:"
+    )
+
     def cmake_args(self):
 
         args = [
@@ -73,7 +80,6 @@ class Windninja(CMakePackage):
             self.define_from_variant("BUILD_STL_CONVERTER", "build_stl_converter"),
             self.define_from_variant("BUILD_CONVERT_OUTPUT", "build_convert_output"),
             self.define_from_variant("BUILD_SOLAR_GRID", "build_solar_grid"),
-
         ]
         return args
 
