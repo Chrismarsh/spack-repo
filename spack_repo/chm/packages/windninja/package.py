@@ -51,7 +51,7 @@ class Windninja(CMakePackage):
     )
 
     # https://github.com/firelab/windninja/pull/650
-    patch("https://github.com/firelab/windninja/commit/f849d4b11ec2a8e30915114b02211b7b57be0e2c.patch?full_index=1",
+    patch("https://github.com/firelab/windninja/commit/db0d72e1179cdc394dfc7c86f0d4d92c017f4e74.patch?full_index=1",
         sha256="5c9a6b377a04fa92bc56701e0676118741ea660e363a98bdf11d09eca88f81ad",
         when="@3.12.1"
     )
