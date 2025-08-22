@@ -50,13 +50,21 @@ class Windninja(CMakePackage):
         msg="ninjafoam is not supported on Macos because OpenFoam does not build on Macos",
     )
 
+    # CPLCreateJoinableThread type error
     # https://github.com/firelab/windninja/pull/650
     patch("https://github.com/firelab/windninja/commit/db0d72e1179cdc394dfc7c86f0d4d92c017f4e74.patch?full_index=1",
         sha256="5c9a6b377a04fa92bc56701e0676118741ea660e363a98bdf11d09eca88f81ad",
         when="@3.12.1"
     )
 
-    # handle CPLIsNan removal in gdal 3.11.3
+    # Fix omp targets on macos
+    # https://github.com/firelab/windninja/pull/655
+    patch("https://github.com/firelab/windninja/commit/2c9b877cfd0bd9a20b222ac48c10a42c9d7857ae.patch?full_index=1",
+        sha256="011ccffc16ef41ddbdece893915e83f04855b42377a0ac2b934839c679a948c5 ",
+        when="+openmp %apple-clang"
+    )
+
+    # handle CPLIsNan removal in gdal 3.11.3:
     # https://github.com/firelab/windninja/pull/651
     patch("https://github.com/firelab/windninja/commit/b71b90fcfd3ba91620ea932ce3378df5989f6d8c.patch?full_index=1",
         sha256="78f3d4913b4c7e83edd767cec65c7e9fdd3c41d9dba939d0bd4d10bb50075cd7",
@@ -82,11 +90,3 @@ class Windninja(CMakePackage):
             self.define_from_variant("BUILD_SOLAR_GRID", "build_solar_grid"),
         ]
         return args
-
-
-    @when("+openmp %apple-clang")
-    def patch(self):
-        # WN needs to link against openmp explicitly when using apple-clang
-        cmake_files = find(self.stage.source_path, "CMakeLists.txt", recursive=True)
-        filter_file(r"set\(LINK_LIBS", "set(LINK_LIBS OpenMP::OpenMP_CXX ", *cmake_files, ignore_absent=True)
-
