@@ -9,7 +9,7 @@ from spack.package import *
 
 
 class Chm(CMakePackage):
-    """FIXME: Put a proper description of your package here."""
+    """The Canadian Hydrological Model (CHM) uses a novel, modular, mesh-based approach for developing and testing process representations in hydrological modelling. """
 
 
     homepage = "https://github.com/Chrismarsh/CHM"
@@ -21,9 +21,14 @@ class Chm(CMakePackage):
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
     version("develop", branch="develop", no_cache=True) # don't source cache this git repo
-    version("1.5.0",
-            sha256="a9fb42cd39baeeec9e5e1157b5d9aa787a12d9c3c661b37402444d88852e76d0",
+
+    version("1.5.1",
+            sha256="d29d18d8a0b5e0fbfef2899313cbba0b9acc280b15dc0a40875e0c9e30ccc571",
             preferred=True
+    )
+
+    version("1.5.0",
+            sha256="a9fb42cd39baeeec9e5e1157b5d9aa787a12d9c3c661b37402444d88852e76d0"
     )
     version("1.4.5", sha256="d22f3c25743495029d044f7b536d4cae930e01de275fbac98e2a687da7edc016")
     version("1.4.3", sha256="fa07e2c8c2f88afef4842a14074a4cade8c137bf314b54ee1b0a6640d8aa0d15")
