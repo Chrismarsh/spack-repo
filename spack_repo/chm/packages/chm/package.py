@@ -77,7 +77,7 @@ class Chm(CMakePackage):
     depends_on("trilinos@15: +mpi +openmp +threadsafe", when="+openmp")
     depends_on("trilinos@15: +mpi ~openmp", when="~openmp")
     depends_on("jemalloc")
-    depends_on("vtk@9.3:")
+    depends_on("vtk@9.3") # keep bounded at 9.3 as 9.4, 9.5 fail on macos
     depends_on("spdlog")
     depends_on("openblas")
     # depends_on("udunits")
