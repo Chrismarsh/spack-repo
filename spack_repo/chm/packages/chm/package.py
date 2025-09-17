@@ -9,7 +9,8 @@ from spack.package import *
 
 
 class Chm(CMakePackage):
-    """The Canadian Hydrological Model (CHM) uses a novel, modular, mesh-based approach for developing and testing process representations in hydrological modelling. """
+    """The Canadian Hydrological Model (CHM) uses a novel, modular, mesh-based approach for developing
+     and testing process representations in hydrological modelling. """
 
 
     homepage = "https://github.com/Chrismarsh/CHM"
