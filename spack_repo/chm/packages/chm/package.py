@@ -23,14 +23,12 @@ class Chm(CMakePackage):
 
     version("develop", branch="develop", no_cache=True) # don't source cache this git repo
 
-    version("1.5.1",
-            sha256="d29d18d8a0b5e0fbfef2899313cbba0b9acc280b15dc0a40875e0c9e30ccc571",
+    version("1.5.2", 
+            sha256="f4614e1b066a7137335c0e4a94972f79167f3ebf11512adcaec9c9935bcb2ef9",
             preferred=True
     )
-
-    version("1.5.0",
-            sha256="a9fb42cd39baeeec9e5e1157b5d9aa787a12d9c3c661b37402444d88852e76d0"
-    )
+    version("1.5.1", sha256="d29d18d8a0b5e0fbfef2899313cbba0b9acc280b15dc0a40875e0c9e30ccc571")
+    version("1.5.0", sha256="a9fb42cd39baeeec9e5e1157b5d9aa787a12d9c3c661b37402444d88852e76d0")
     version("1.4.5", sha256="d22f3c25743495029d044f7b536d4cae930e01de275fbac98e2a687da7edc016")
     version("1.4.3", sha256="fa07e2c8c2f88afef4842a14074a4cade8c137bf314b54ee1b0a6640d8aa0d15")
     version("1.4.2", sha256="4fdf2fdcca5b1141cac85599d3da3bef5900667b21edf09ab314fc107b5e37f7")
@@ -59,7 +57,9 @@ class Chm(CMakePackage):
     requires("^cgal~gmp", when="^cgal@6:")
 
     depends_on("hdf5 +cxx")
-    depends_on("netcdf-c@4.9.0: +mpi")
+
+    # required for the fancy collective compression features
+    depends_on("netcdf-c@4.9.2: +mpi") 
     depends_on("netcdf-cxx4@4.3:")
     depends_on("gdal@3.9: +hdf5 +netcdf")
     depends_on("proj@9: +curl+tiff")
