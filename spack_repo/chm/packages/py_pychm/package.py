@@ -11,9 +11,7 @@ from spack.package import *
 
 class PyPychm(PythonPackage):
     """
-    Mesher is a novel multi-objective unstructured mesh generation software 
-    that allows mesh generation to be generated from an arbitrary number of hydrologically 
-    important features while maintaining a variable spatial resolution. 
+    Tools for working with CHM
     """
 
     homepage = "https://github.com/Chrismarsh/pyCHM/"
@@ -29,17 +27,19 @@ class PyPychm(PythonPackage):
     version("1.4.2", sha256="d637967540ef12d09804a94b9ae073e11f51e02014600c70de98a42f0ef47673")
 
     # setup.py
-    depends_on("vtk+python@9.2:")
-    depends_on("py-numpy@1.26:") #forces a new version of setuptools needed for bokeh
-    depends_on("py-xarray +io +viz +parallel")
-    depends_on("py-netcdf4")
-    depends_on("py-pandas")
-    depends_on("gdal@3.5: +python +netcdf +hdf5")
-    depends_on("py-dask")
-    depends_on("py-pyvista@0.29:")
-    depends_on("py-rioxarray")
-    depends_on("py-rasterio")
-    depends_on("py-cftime")
-    depends_on("py-pyproj")
-    depends_on("esmf +python")
+    depends_on("vtk +python@9.2:", type=("build", "run"))
+    depends_on("py-numpy@1.26:", type=("build", "run")) #forces a new version of setuptools needed for bokeh
+    depends_on("py-xarray@2025: +io +viz +parallel", type=("build", "run"))
+    depends_on("py-uxarray", type=("build", "run"))
+    depends_on("py-netcdf4", type=("build", "run"))
+    depends_on("py-pandas", type=("build", "run"))
+    depends_on("gdal@3.5: +python +netcdf +hdf5", type=("build", "run"))
+    depends_on("py-dask", type=("build", "run"))
+    depends_on("py-pyvista@0.29:", type=("build", "run"))
+    depends_on("py-rioxarray@0.19:", type=("build", "run"))
+    depends_on("py-rasterio", type=("build", "run"))
+    depends_on("py-cftime", type=("build", "run"))
+    depends_on("py-pyproj", type=("build", "run"))
+    depends_on("esmf +python", type=("build", "run"))
+    depends_on("py-mpi4py", type=("build", "run"))
 
