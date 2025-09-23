@@ -75,8 +75,12 @@ class Chm(CMakePackage):
     depends_on("meteoio")
     depends_on("func@2.2: ~openmp", when="~openmp")
     depends_on("func@2.2: +openmp", when="+openmp")
-    depends_on("trilinos@15: +mpi +openmp +threadsafe", when="+openmp")
-    depends_on("trilinos@15: +mpi ~openmp", when="~openmp")
+
+    tri_variants = '+mpi +belos +tpetra +ifpack2 +amesos2 +muelu +kokkos'
+
+    depends_on(f"trilinos@15: +openmp +threadsafe {tri_variants}", when="+openmp")
+    depends_on(f"trilinos@15: ~openmp {tri_variants}", when="~openmp")
+
     depends_on("jemalloc")
     depends_on("vtk@9.3") # keep bounded at 9.3 as 9.4, 9.5 fail on macos
     depends_on("spdlog")
