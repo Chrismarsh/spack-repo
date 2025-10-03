@@ -23,10 +23,11 @@ class Chm(CMakePackage):
 
     version("develop", branch="develop", no_cache=True) # don't source cache this git repo
 
-    version("1.5.2", 
-            sha256="f4614e1b066a7137335c0e4a94972f79167f3ebf11512adcaec9c9935bcb2ef9",
+    version("1.5.3",
+            sha256="ea9397af6427dd316135ba8ded86ea72ada64130b7e807a273397a8b9f87e5bb",
             preferred=True
     )
+    version("1.5.2", sha256="f4614e1b066a7137335c0e4a94972f79167f3ebf11512adcaec9c9935bcb2ef9")
     version("1.5.1", sha256="d29d18d8a0b5e0fbfef2899313cbba0b9acc280b15dc0a40875e0c9e30ccc571")
     version("1.5.0", sha256="a9fb42cd39baeeec9e5e1157b5d9aa787a12d9c3c661b37402444d88852e76d0")
     version("1.4.5", sha256="d22f3c25743495029d044f7b536d4cae930e01de275fbac98e2a687da7edc016")
@@ -77,7 +78,6 @@ class Chm(CMakePackage):
     depends_on("func@2.2: +openmp", when="+openmp")
 
     tri_variants = '+mpi +belos +tpetra +ifpack2 +amesos2 +muelu +kokkos'
-
     depends_on(f"trilinos@15: +openmp +threadsafe {tri_variants}", when="+openmp")
     depends_on(f"trilinos@15: ~openmp {tri_variants}", when="~openmp")
 
