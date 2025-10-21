@@ -22,6 +22,7 @@ class Chm(CMakePackage):
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
     version("develop", branch="develop", no_cache=True) # don't source cache this git repo
+    version("bridge", branch="bridge", no_cache=True) # don't source cache this git repo
 
     version("1.5.4", sha256="31d6ea6dcf7ff0f7e2225e8547bb4176cdd5d39f699495a747c193720d9fb56b")
     version("1.5.3", sha256="ea9397af6427dd316135ba8ded86ea72ada64130b7e807a273397a8b9f87e5bb")
