@@ -23,23 +23,26 @@ class PyPychm(PythonPackage):
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
     version("develop", branch="develop", no_cache=True) # don't source cache this git repo
+    version("1.5.0", sha256="87ee26eae4ea082a71e4770b90c26c11a423da9af0bef9d7044883106776791c")
     version("1.4.4", sha256="7dce46311e1978456257fb4b8c8fa0fc8dc434b574623f23e21076da107a88fc")
 
 
     # setup.py
-    depends_on("vtk +python@9.2:", type=("build", "run"))
+    depends_on("vtk +python@9.2:", type=("build", "run"), when="@1.4.4")
     depends_on("py-numpy@1.26:", type=("build", "run")) #forces a new version of setuptools needed for bokeh
     depends_on("py-xarray@2025: +io +viz +parallel", type=("build", "run"))
-    depends_on("py-uxarray", type=("build", "run"))
+    depends_on("py-uxarray", type=("build", "run"), when="@1.5:")
     depends_on("py-netcdf4", type=("build", "run"))
     depends_on("py-pandas", type=("build", "run"))
     depends_on("gdal@3.5: +python +netcdf +hdf5", type=("build", "run"))
     depends_on("py-dask", type=("build", "run"))
-    depends_on("py-pyvista@0.29:", type=("build", "run"))
+    depends_on("py-pyvista@0.29:", type=("build", "run"), when="@1.4.4")
     depends_on("py-rioxarray@0.19:", type=("build", "run"))
     depends_on("py-rasterio", type=("build", "run"))
     depends_on("py-cftime", type=("build", "run"))
     depends_on("py-pyproj", type=("build", "run"))
     depends_on("esmf +python", type=("build", "run"))
     depends_on("py-mpi4py", type=("build", "run"))
+    depends_on("py-geopandas", type=("build", "run"), when="@1.5:")
+    depends_on("py-zarr", type=("build", "run"), when="@1.5:")
 
