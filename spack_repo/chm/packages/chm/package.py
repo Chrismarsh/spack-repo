@@ -22,9 +22,13 @@ class Chm(CMakePackage):
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
     version("develop", branch="develop", no_cache=True) # don't source cache this git repo
-    version("bridge", branch="bridge", no_cache=True) # don't source cache this git repo
 
-    version("1.5.4", sha256="31d6ea6dcf7ff0f7e2225e8547bb4176cdd5d39f699495a747c193720d9fb56b")
+    version("1.5.4.1", sha256="bcdef2ca110788b4d647a6add80f503c93a3cc64b9934e8bf1c4f6a87ee67f7e")
+    version(
+        "1.5.4",
+        sha256="31d6ea6dcf7ff0f7e2225e8547bb4176cdd5d39f699495a747c193720d9fb56b",
+        deprecated=True
+    )
     version("1.5.3", sha256="ea9397af6427dd316135ba8ded86ea72ada64130b7e807a273397a8b9f87e5bb")
     version("1.5.2", sha256="f4614e1b066a7137335c0e4a94972f79167f3ebf11512adcaec9c9935bcb2ef9")
     version("1.5.1", sha256="d29d18d8a0b5e0fbfef2899313cbba0b9acc280b15dc0a40875e0c9e30ccc571")
@@ -49,8 +53,9 @@ class Chm(CMakePackage):
     depends_on("c", type="build")
     depends_on("cxx", type="build")
     depends_on("fortran", type="build")
-
     depends_on("cmake@3.30:", type="build")
+
+    depends_on("mpi", type=("build", "run"))
 
     depends_on("boost@1.85.0: +system+filesystem+date_time+thread+chrono+regex+iostreams+program_options+mpi+serialization")
     depends_on("cgal@5:")
@@ -62,7 +67,7 @@ class Chm(CMakePackage):
     depends_on("netcdf-c@4.9.2: +mpi") 
     depends_on("netcdf-cxx4@4.3:")
     depends_on("gdal@3.9: +hdf5 +netcdf")
-    depends_on("proj@9: +curl+tiff")
+    depends_on("proj@9: +curl +tiff")
     depends_on("sparsehash")
     depends_on("gperftools build_system=autotools")
     depends_on("gsl +external-cblas")
@@ -81,7 +86,9 @@ class Chm(CMakePackage):
     depends_on(f"trilinos@15: ~openmp {tri_variants}", when="~openmp")
 
     depends_on("jemalloc")
-    depends_on("vtk@9.3") # keep bounded at 9.3 as 9.4, 9.5 fail on macos
+    depends_on("vtk@9.3:") 
+    depends_on("vtk@9.3", when="target=darwin") # keep bounded at 9.3 as 9.4, 9.5 fail on macos
+
     depends_on("spdlog")
     depends_on("openblas")
     # depends_on("udunits")
