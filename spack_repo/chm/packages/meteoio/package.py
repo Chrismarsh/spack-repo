@@ -18,6 +18,7 @@ class Meteoio(CMakePackage):
 
     license("LGPL-3.0-or-later", checked_by="Chrismarsh")
 
+    version("2.11.0", sha256="59bae16be57188639d81eb0131e50e54bbf1359614601c768b7fc4d2e36b295d")
     version("2.8.0", sha256="898bf0d0329000e7ae18064c30ea72362aac447deda0b013ee22e4aa63563efd")
 
     depends_on("c", type="build")
