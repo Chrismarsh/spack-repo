@@ -20,6 +20,9 @@ class Windninja(CMakePackage):
     # https://github.com/firelab/windninja/blob/master/LICENSE
     license("NIST-PD-fallback")
 
+    version("master", branch="master", no_cache=True)
+    version("3.13.0.1", tag="3.13.0.1")
+    version("3.12.2", sha256="f34f359e137e7aa3b735ffbc6a0fb61460a61cf7356ee682800915cb14475759")
     version("3.12.1", sha256="c6a0bf3e79a7dca875f9c1bcec6b3b625192bdd6cebcfdfb1fc6c30def4bea63")
     version("3.11.2", sha256="c9b9af0c9905d8a0792ccf9db9958a0e3b201f653336fd59dbc7f5679cb79881")
     version("3.10.0", sha256="7ab120c7465afbe5e95e5eec32523a41ff010094c9b2db87cf9ac4b8eac1f956")
@@ -41,6 +44,7 @@ class Windninja(CMakePackage):
     depends_on("gdal@3.4.1: +netcdf +curl")
     depends_on("llvm-openmp", when="+openmp %apple-clang")
     depends_on("openfoam", when="+ninjafoam")
+    depends_on("shapelib", when="@master")
 
     depends_on("qt@4", when="+qtgui")
 
@@ -71,22 +75,46 @@ class Windninja(CMakePackage):
         when="@3.12.1 ^gdal@3.11.3:"
     )
 
+    # fix these later once merged to master
+    # https://github.com/firelab/windninja/pull/761
+    patch("https://github.com/firelab/windninja/commit/8741b3ce9dc0c39603076dfb37301d15764167f9.patch?full_index=true",
+        sha256="0e7d4c7c703a19388f49069fcc1f58e82829a2ae91f7923efb2d7ad75944dc06",
+        when="@master"
+    )
+    # https://github.com/firelab/windninja/pull/762
+    patch("https://github.com/firelab/windninja/commit/231d5f94e541406a46f8722255782a2aa16ef428.patch?full_index=true", 
+        sha256="b443ee264a2e19291a32aeda82eeb65aaadb3fb63d5eb36e78a7bf2e85813a01",
+        when="@master"
+    )
+    # https://github.com/firelab/windninja/pull/764
+    patch("https://github.com/firelab/windninja/commit/d6b19fdd781e993c516f85333593385363322686.patch?full_index=true",
+        sha256="ea064e3c713087ad799b23c7aa3161f4ab2a2ccba3a877e87f95d3ee03d0d6d8",
+        when="@master"
+    )
+
     def cmake_args(self):
 
         args = [
-            self.define("NINJA_QTGUI", False),
             self.define("NINJAFOAM", False),
             self.define("CMAKE_CXX_STANDARD", "11"),
+            self.define("NINJA_CLI", True),
+            self.define("CMAKE_BUILD_TYPE", "Debug"),
 
             # https://github.com/firelab/windninja/issues/630
             self.define("CMAKE_POLICY_VERSION_MINIMUM", "3.5"),
-
             self.define_from_variant("OPENMP_SUPPORT", "openmp"),
             self.define_from_variant("NINJAFOAM", "ninjafoam"),
-            self.define_from_variant("NINJA_QTGUI", "qtgui"),
             self.define_from_variant("BUILD_FETCH_DEM", "build_fetch_dem"),
             self.define_from_variant("BUILD_STL_CONVERTER", "build_stl_converter"),
             self.define_from_variant("BUILD_CONVERT_OUTPUT", "build_convert_output"),
             self.define_from_variant("BUILD_SOLAR_GRID", "build_solar_grid"),
+            
         ]
+
+        if self.spec.satisfies("@master"):
+            args.append(self.define_from_variant("NINJA_GUI", "qtgui"))
+        else:
+            args.append(self.define_from_variant("NINJA_QTGUI", "qtgui"))
+
+
         return args
