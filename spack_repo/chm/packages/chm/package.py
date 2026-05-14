@@ -22,6 +22,8 @@ class Chm(CMakePackage):
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
     version("develop", branch="develop", no_cache=True) # don't source cache this git repo
+    version("1.5.5b3_a1", branch="fix-netcdf-aux-latlon", no_cache=True)
+
     version("1.5.5b2", tag="1.5.5b2", no_cache=True) # don't source cache this git repo
     version("1.5.5b1", tag="1.5.5b1", no_cache=True) # don't source cache this git repo
 
