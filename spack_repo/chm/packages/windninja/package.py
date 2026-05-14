@@ -75,22 +75,6 @@ class Windninja(CMakePackage):
         when="@3.12.1 ^gdal@3.11.3:"
     )
 
-    # fix these later once merged to master
-    # https://github.com/firelab/windninja/pull/761
-    patch("https://github.com/firelab/windninja/commit/8741b3ce9dc0c39603076dfb37301d15764167f9.patch?full_index=true",
-        sha256="0e7d4c7c703a19388f49069fcc1f58e82829a2ae91f7923efb2d7ad75944dc06",
-        when="@master"
-    )
-    # https://github.com/firelab/windninja/pull/762
-    patch("https://github.com/firelab/windninja/commit/231d5f94e541406a46f8722255782a2aa16ef428.patch?full_index=true", 
-        sha256="b443ee264a2e19291a32aeda82eeb65aaadb3fb63d5eb36e78a7bf2e85813a01",
-        when="@master"
-    )
-    # https://github.com/firelab/windninja/pull/764
-    patch("https://github.com/firelab/windninja/commit/d6b19fdd781e993c516f85333593385363322686.patch?full_index=true",
-        sha256="ea064e3c713087ad799b23c7aa3161f4ab2a2ccba3a877e87f95d3ee03d0d6d8",
-        when="@master"
-    )
 
     def cmake_args(self):
 
