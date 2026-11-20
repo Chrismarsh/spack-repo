@@ -19,6 +19,7 @@ class PyWindmapper(PythonPackage):
     homepage = "https://github.com/Chrismarsh/Windmapper"
     url = "https://github.com/Chrismarsh/Windmapper/archive/refs/tags/2.1.16.tar.gz"
     git = "https://github.com/Chrismarsh/Windmapper.git"
+    pypi = "windmapper/windmapper-2.2.4.tar.gz"
 
 
     maintainers("Chrismarsh")
@@ -26,6 +27,8 @@ class PyWindmapper(PythonPackage):
     license("GPL-3.0-or-later", checked_by="Chrismarsh")
 
     version("develop", branch="develop", no_cache=True)
+    version("2.2.5", sha256="de849564a74aea4ff74c5835df626a4777b017aaa35a1367fb6c4d103c478c81")
+    version("2.2.4", sha256="ab94db042b646be6c8c065e244cdf9d4120c7d2f6029ea8a8d53de3adef4b3ec")
     version("2.1.16", sha256="da7dca6d16557221814377f90aef7bdf3434c0ac75978969975f9b93672ffe1c")
 
     # pyproject.toml
@@ -48,6 +51,11 @@ class PyWindmapper(PythonPackage):
     def setup_build_environment(self, env):
         env.set("BUILD_WINDNINJA", False)
 
+    def setup_run_environment(self, env):
+        env.set(
+            "WINDNINJA_EXE",
+            join_path(self.spec["windninja"].prefix.bin, "WindNinja_cli"),
+        )
     
 class PythonPipBuilder(PythonPipBuilder):
 
