@@ -81,7 +81,11 @@ class Chm(CMakePackage):
     depends_on("intel-oneapi-tbb", when="platform=linux")
 
     depends_on("eigen")
-    depends_on("meteoio@2.8.0")
+
+    depends_on("meteoio")
+    depends_on("meteoio@2.8.0", when="@:1.5")
+
+
     depends_on("func@2.2: ~openmp", when="~openmp")
     depends_on("func@2.2: +openmp", when="+openmp")
 
