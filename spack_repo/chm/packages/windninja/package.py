@@ -21,6 +21,7 @@ class Windninja(CMakePackage):
     license("NIST-PD-fallback")
 
     version("master", branch="master", no_cache=True)
+    version("4.0.0", sha256="e2cf3c4fad8745fd3d763648bfbcfc0558c912fdb872ac5d92261e4364d71d6f")
     version("3.13.0.1", tag="3.13.0.1")
     version("3.12.2", sha256="f34f359e137e7aa3b735ffbc6a0fb61460a61cf7356ee682800915cb14475759")
     version("3.12.1", sha256="c6a0bf3e79a7dca875f9c1bcec6b3b625192bdd6cebcfdfb1fc6c30def4bea63")
@@ -40,13 +41,21 @@ class Windninja(CMakePackage):
     depends_on("c", type="build")
 
     depends_on("cmake@3.5:",type="build")
-    depends_on("boost@1.74.0: +date_time +program_options +test")
-    depends_on("gdal@3.4.1: +netcdf +curl")
+    depends_on("boost@1.85.0: +date_time +program_options +test")
+    # depends_on("boost@1.91.0: +date_time +program_options +test", when="@4:")
+
+    depends_on("gdal@3.4.1: +netcdf +curl") # more than required, but the most robust I've found
+    depends_on("gdal@3.12.4: +netcdf +curl", when="@4:")
+
+    depends_on("netcdf-c@4.9.3:", when="@4:")
     depends_on("llvm-openmp", when="+openmp %apple-clang")
     depends_on("openfoam", when="+ninjafoam")
+
     depends_on("shapelib", when="@master")
+    depends_on("shapelib", when="@4:")
 
     depends_on("qt@4", when="+qtgui")
+    depends_on("qt@6.2.4: +gui +opengl", when="+qtgui @4:")
 
     conflicts(
         "+ninjafoam",
@@ -95,7 +104,7 @@ class Windninja(CMakePackage):
             
         ]
 
-        if self.spec.satisfies("@master"):
+        if self.spec.satisfies("@master") or self.spec.satisfies("@4:"):
             args.append(self.define_from_variant("NINJA_GUI", "qtgui"))
         else:
             args.append(self.define_from_variant("NINJA_QTGUI", "qtgui"))
